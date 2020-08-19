@@ -12,7 +12,7 @@
 		<view class="button-demo">
 			<u-button :ripple="true" @click="gotoLogin">登录界面</u-button>
 		</view>
-		<u-tabbar :list="vuex_tabbar" :mid-button="false" @change="change"></u-tabbar>
+		<u-tabbar :list="vuex_tabbar" :mid-button="false" @change="change" v-model="vuex_tabbarindex"></u-tabbar>
 	</view>
 </template>
 
@@ -20,12 +20,29 @@
 	export default {
 		data() {
 			return {
-				title: 'Hello'
+				title: 'Hello',
+				
+				tabbarIndex: -1
 			}
 		},
+		
+		//监听页面加载
 		onLoad() {
 
 		},
+		
+		//监听页面初次渲染完成
+		onReady() {
+			console.log('on page ready ' + this.tabbarIndex);
+			//console.log(this.$store.state.vuex_tabbar);
+			
+		},
+		
+		onShow() {
+			console.log('on page show ' + this.tabbarIndex);
+			//
+		},
+		
 		methods: {
 			gotoLogin() {
 				this.$u.route('/pages/login/index');
@@ -34,7 +51,13 @@
 			change(index) {
 				console.log('tabbar changed: ' + index);
 			},
-		}
+		},
+		
+		watch: {
+			vuex_tabbar(val) {
+				this.$store.dispatch('loadPageLayout', {item:val[0], index: 0, mustget: false});
+			},
+		}, 
 	}
 </script>
 

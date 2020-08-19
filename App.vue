@@ -4,12 +4,12 @@
 			console.log('App Launch');
 			
 			//
-			this.$store.dispatch('loadTabbarList');
+			//this.$store.dispatch('loadTabbarList');
 		},
 		onShow: function() {
 			console.log('App Show')
 			
-			
+			this.$store.dispatch('loadTabbarList');
 		},
 		onHide: function() {
 			console.log('App Hide')

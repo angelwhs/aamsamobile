@@ -7,7 +7,7 @@
 <script>
 	export default {
 		props: {
-			pagelayoutId: 0,
+			pagelayout: null,
 		},
 		
 		data() {
@@ -24,13 +24,13 @@
 				if(this.pagelayoutId <= 0)
 					return;
 				
-				this.$u.get('/api/cms/frontend/pagelayout/GetPageById', {
-					id: this.pagelayoutId
-				}).then(res => {
-					console.log(res);
-				});
+				
 			},
-		}
+		},
+		
+		watch: {
+			
+		},
 	}
 </script>
 
