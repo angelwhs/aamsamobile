@@ -12,7 +12,7 @@
 		<view class="button-demo">
 			<u-button :ripple="true" @click="gotoLogin">登录界面</u-button>
 		</view>
-		<u-tabbar :list="vuex_tabbar" :mid-button="false"></u-tabbar>
+		<u-tabbar :list="vuex_tabbar" :mid-button="false" @change="change"></u-tabbar>
 	</view>
 </template>
 
@@ -29,6 +29,10 @@
 		methods: {
 			gotoLogin() {
 				this.$u.route('/pages/login/index');
+			},
+			
+			change(index) {
+				console.log('tabbar changed: ' + index);
 			},
 		}
 	}

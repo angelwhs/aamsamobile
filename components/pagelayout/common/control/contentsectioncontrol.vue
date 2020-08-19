@@ -2,7 +2,9 @@
 	<view>
 		<template v-if="contentsectionlist && contentsectionlist.length > 0">
 			<template v-for="item in contentsectionlist">
-				<template v-if="item.ShowType === 1"></template>
+				<template v-if="item.ShowType === 1">
+					<banner :items="item.Articles"></banner>
+				</template>
 				<template v-else-if="item.ShowType === 2"></template>
 				<template v-else-if="item.ShowType === 3"></template>
 			</template>
@@ -27,6 +29,9 @@
 	import myInfo from "@/components/pagelayout/center/myinfo/myinfo.vue";
 	
 	export default {
+		components: {
+			banner,
+		},
 		props: {
 			//栏目
 			contentsectionlist: [],
