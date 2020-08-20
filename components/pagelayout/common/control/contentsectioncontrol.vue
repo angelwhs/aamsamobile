@@ -1,12 +1,14 @@
 <template>
-	<view>
+	<view style="width: 100%;">
 		<template v-if="contentsectionlist && contentsectionlist.length > 0">
 			<template v-for="item in contentsectionlist">
-				<template v-if="item.ShowType === 1">
-					<banner :items="item.Articles"></banner>
+				<template v-if="item.Articles && item.Articles.length > 0">
+					<template v-if="item.ShowType === 1">
+						<banner :items="getBannerList(item.Articles)"></banner>
+					</template>
+					<template v-else-if="item.ShowType === 2"></template>
+					<template v-else-if="item.ShowType === 3"></template>
 				</template>
-				<template v-else-if="item.ShowType === 2"></template>
-				<template v-else-if="item.ShowType === 3"></template>
 			</template>
 		</template>
 	</view>
@@ -34,7 +36,10 @@
 		},
 		props: {
 			//栏目
-			contentsectionlist: [],
+			contentsectionlist: {
+				type: Array,
+				default: []
+			},
 		},
 		
 		data() {
@@ -50,7 +55,23 @@
 						return '';
 					
 				}
-			}
+			},
+			
+			getBannerList(articles) {
+				let list = [];
+				if(articles && articles.length > 0) {
+						articles.forEach((v) => {
+							let item = {
+								image: v.ImageThumb_PictureUrl,
+								title: v.Title,
+							};
+							
+							list.push(item);
+						});
+				}
+				console.log(list);
+				return list;
+			},
 		}
 	}
 </script>

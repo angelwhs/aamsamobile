@@ -1,17 +1,21 @@
 <template>
-	<view>
-		<view>
-			<u-swiper :effect3d="swiperConfig.effect3d" @click="click" :indicator-pos="swiperConfig.indicatorPos" 
-				:mode="swiperConfig.mode" :interval="3000" :height="250" :list="items">
-			</u-swiper>
-		</view>
+	<view style="width: 100%;">
+		<u-swiper 
+			:effect3d="swiperConfig.effect3d"
+			@click="click"
+			:indicator-pos="swiperConfig.indicatorPos"
+			:mode="swiperConfig.mode"
+			:interval="3000"
+			:height="250"
+			:list="swiperConfig.list"
+		></u-swiper>
 	</view>
 </template>
 
 <script>
-	export default {
-		props: {
-			/*
+export default {
+	props: {
+		/*
 			items: [
 				{
 					Title: '', //标题
@@ -33,75 +37,80 @@
 				}
 			]
 			*/
-			items: [],
-			
-			title: {
-				type: String,
-				default: ''
-			},
-			
-			isshowtitle: {
-				type: Boolean,
-				default: false
-			},
-			
-			subtitle: {
-				type: String,
-				default: ''
-			},
-			
-			isshowsubtitle: {
-				type: Boolean,
-				default: false
-			},
-			
-			isshowmore: {
-				type: Boolean,
-				default: false
-			},
-			
-			moretext: {
-				type: String,
-				default: '更多'
-			},
-			
-			morelinkurl: {
-				type: String,
-				default: ''
-			},
-			
-			showcount: {
-				type: Number,
-				default: 3,
-			},
+		items: {
+			type: Array,
+			default: []
 		},
-		
-		data() {
-			return {
-				swiperConfig: {
-					title: false,
-					mode: 'round',
-					indicatorPos: 'bottomCenter',
-					effect3d: true,
-				},
-			}
+
+		title: {
+			type: String,
+			default: ''
 		},
-		
-		methods: {
-			initControl() {
-				if(!this.pagelayoutitem) 
-					return;
-					
-				
-			},
-			
-			click(index) {
-				
-			},
+
+		isshowtitle: {
+			type: Boolean,
+			default: false
+		},
+
+		subtitle: {
+			type: String,
+			default: ''
+		},
+
+		isshowsubtitle: {
+			type: Boolean,
+			default: false
+		},
+
+		isshowmore: {
+			type: Boolean,
+			default: false
+		},
+
+		moretext: {
+			type: String,
+			default: '更多'
+		},
+
+		morelinkurl: {
+			type: String,
+			default: ''
+		},
+
+		showcount: {
+			type: Number,
+			default: 3
 		}
+	},
+
+	data() {
+		return {
+			swiperConfig: {
+				title: false,
+				mode: 'round',
+				indicatorPos: 'bottomCenter',
+				effect3d: true,
+				list: this.items,
+			}
+		};
+	},
+
+	methods: {
+		initControl() {
+			if (!this.pagelayoutitem) return;
+		},
+
+		click(index) {}
 	}
+
+	// watch: {
+	// 	items(val) {
+	// 		console.log(val);
+	// 		this.swiperConfig.list = [];
+
+	// 	},
+	// },
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

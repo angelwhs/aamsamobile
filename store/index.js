@@ -60,18 +60,22 @@ const store = new Vuex.Store({
 	},
 	
 	getters: {
-		getPagelayoutByTabbarIndex: (state) => (index) => {
+		getPagelayoutByPageName: (state) => (pagename) => {
+			let pagelayout = null;
+			
 			if(state.vuex_pagelayout && state.vuex_pagelayout.length > 0) {
-				let pagelayout = null;
 				state.vuex_pagelayout.forEach(val => {
-					if(val.tabbarIndex === index) {
+					if(val.pagename === pagename) {
 						pagelayout == val;
 						return;
 					}
 				});
-				return pagelayout;
 			}
+			
+			return pagelayout;
 		},
+		
+		
 	},
 	
 	mutations: {
@@ -101,7 +105,7 @@ const store = new Vuex.Store({
 	},
 	
 	actions: {
-		loadTabbarList({ commit }) {
+		loadTabbarList(context) {
 			Vue.prototype.$u.get('/api/cms/frontend/navigationbar/GetNavBar', {
 				platform: 1
 			}).then(res => {
@@ -123,35 +127,27 @@ const store = new Vuex.Store({
 			});
 		},
 		
-		loadPageLayout({ commit }, currentItem) {
-			//console.log(currentItem);
-			//console.log(this.state.vuex_pagelayout);
-			
-			let tabbaritem = currentItem.item;
-			let index = currentItem.index;
-			let mustget = currentItem.mustget;
-			
-			if(!tabbaritem) { return; }
-			
-			let pageId = tabbaritem.PageLayoutId;
-			
-			if(!pageId || pageId <= 0) { return; }
-			
-			let currentpage = this.getters.getPagelayoutByTabbarIndex(index);
-			
-			if(currentpage && !mustget) { return; }
-			
-			Vue.prototype.$u.get('/api/cms/frontend/pagelayout/GetPageById', {
-				id: pageId
-			}).then(res => {
-				//console.log(res);
-				//删除原有
-				if(currentpage) {
-					//console.log('currentpage ' + currentpage);
-					this.state.vuex_pagelayout.splice(this.state.vuex_pagelayout.indexOf(currentpage));
-				}
+		loadPageLayoutData(context, pagename) {
+			return new Promise((resolve, reject) => {
+				let pagelayout = context.getters.getPagelayoutByPageName(pagename);
 				
-				this.state.vuex_pagelayout.push({tabbarIndex: index, pagelayout: res});
+				//如果没有则加载
+				Vue.prototype.$u.get('/api/cms/frontend/pagelayout/GetPageByName', {
+					pagename: pagename
+				}).then(res => {
+					//console.log(res);
+					//删除原有
+					if(pagelayout) {
+						//console.log('currentpage ' + currentpage);
+						context.state.vuex_pagelayout.splice(state.vuex_pagelayout.indexOf(pagelayout));
+					}
+					
+					pagelayout = {pagename: pagename, pagelayout: res};
+					
+					context.state.vuex_pagelayout.push(pagelayout);
+					
+					resolve(pagelayout);
+				});
 			})
 		},
 	}
