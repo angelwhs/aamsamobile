@@ -22,7 +22,7 @@
 						:custom-prefix="item.customIcon ? 'custom-icon' : 'uicon'"
 					></u-icon>
 					<u-badge :count="item.count" :is-dot="item.isDot" 
-						v-if="item.count > 0"
+						v-if="item.count"
 						:offset="[-2, getOffsetRight(item.count, item.isDot)]"
 					></u-badge>
 				</view>
@@ -221,7 +221,7 @@
 			},
 			// 获取凸起按钮外层元素的left值，让其水平居中
 			getMidButtonLeft() {
-				let windowWidth = this.$u.sys().windowWidth;
+				let windowWidth = this.$u.sys.windowWidth;
 				// 由于安卓中css计算left: 50%的结果不准确，故用js计算
 				this.midButtonLeft = (windowWidth / 2) + 'px';
 			}

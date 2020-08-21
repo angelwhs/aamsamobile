@@ -1,5 +1,7 @@
 <template>
 	<view>
+		<!--search bar-->
+		
 		
 	</view>
 </template>

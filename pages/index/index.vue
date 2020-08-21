@@ -126,7 +126,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		padding: 40rpx;
+		padding: 0rpx;
 	}
 
 	.logo {

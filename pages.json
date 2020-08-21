@@ -39,7 +39,9 @@
         }
         ,{
             "path" : "pages/cms/articledetail",
-            "style" : {}
+            "style" : {
+				"navigationStyle": "custom" // 隐藏系统导航栏
+			}
         }
         ,{
             "path" : "pages/cms/articlelist",

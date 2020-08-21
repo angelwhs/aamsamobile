@@ -6,8 +6,12 @@
 					<template v-if="item.ShowType === 1">
 						<banner :items="getBannerList(item.Articles)"></banner>
 					</template>
-					<template v-else-if="item.ShowType === 2"></template>
-					<template v-else-if="item.ShowType === 3"></template>
+					<template v-else-if="item.ShowType === 2">
+						
+					</template>
+					<template v-else-if="item.ShowType === 3">
+						<custom-menu :items="item.Articles"></custom-menu>
+					</template>
 				</template>
 			</template>
 		</template>
@@ -17,13 +21,15 @@
 <script>
 	//common
 	import banner from "@/components/pagelayout/common/banner/banner.vue";
-	import menu from "@/components/pagelayout/common/menu/menu.vue";
+	import customMenu from "@/components/pagelayout/common/menu/menu.vue";
+	import customSearchBar from "@/components/pagelayout/common/searchbar/searchbar.vue";
 	
 	//cms
 	import articleList from "@/components/pagelayout/cms/articlelist/articlelist.vue";
 	
-	//alumniassociation
-	import myClasses from "@/components/pagelayout/alumniassociation/myclasses/myclasses.vue";
+	//alumniassociation 校友会
+	import classesDetail from "@/components/pagelayout/alumniassociation/classeslist/classesdetail.vue";
+	import classesList from "@/components/pagelayout/alumniassociation/classeslist/classeslist.vue";
 	import applyActionList from "@/components/pagelayout/alumniassociation/applyactionlist/applyactionlist.vue";
 	import homeStatistics from "@/components/pagelayout/alumniassociation/homestatistics/homestatistics.vue";
 	
@@ -32,7 +38,22 @@
 	
 	export default {
 		components: {
+			// common
 			banner,
+			customMenu,
+			customSearchBar,
+			
+			//center
+			myInfo,
+			
+			//cms
+			articleList,
+			
+			//alumniassociation
+			classesDetail,
+			applyActionList,
+			homeStatistics,
+			classesList,
 		},
 		props: {
 			//栏目

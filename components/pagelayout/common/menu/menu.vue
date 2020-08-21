@@ -1,6 +1,13 @@
 <template>
-	<view>
-		
+	<view style="width: 100%;">
+		<u-grid class="grid-box" :col="4">
+			<template v-for="item in items">
+				<u-grid-item>
+					<u-image :src="item.ImageThumb_PictureUrl" width="96" height="96"></u-image>
+					<view class="grid-text">{{item.Title}}</view>
+				</u-grid-item>
+			</template>
+		</u-grid>
 	</view>
 </template>
 
@@ -29,7 +36,10 @@
 				}
 			]
 			*/
-			items: [],
+			items: {
+				type: Array,
+				default: []
+			},
 			
 			title: {
 				type: String,
@@ -41,31 +51,6 @@
 				default: false
 			},
 			
-			subtitle: {
-				type: String,
-				default: ''
-			},
-			
-			isshowsubtitle: {
-				type: Boolean,
-				default: false
-			},
-			
-			isshowmore: {
-				type: Boolean,
-				default: false
-			},
-			
-			moretext: {
-				type: String,
-				default: '更多'
-			},
-			
-			morelinkurl: {
-				type: String,
-				default: ''
-			},
-			
 			showcount: {
 				type: Number,
 				default: 3,
@@ -74,13 +59,12 @@
 		
 		data() {
 			return {
-				swiperConfig: {
-					title: false,
-					mode: 'round',
-					indicatorPos: 'bottomCenter',
-					effect3d: true,
-				},
+				
 			}
+		},
+		
+		onShow() {
+			console.log('menu ready');
 		},
 		
 		methods: {
@@ -98,6 +82,15 @@
 	}
 </script>
 
-<style>
-
+<style scoped lang="scss">
+	.grid-text {
+		font-size: 28rpx;
+		margin-top: 4rpx;
+		color: $u-type-info;
+	}
+	
+	.grid-box {
+		height: 180rpx;
+		width: 100%;
+	}
 </style>
