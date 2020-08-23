@@ -21,7 +21,10 @@
 			</text>
 		</view>
 		<view class="button-demo">
-			<u-button :ripple="true">按钮组件演示</u-button>
+			<u-button :ripple="true" @click="test">测试按钮</u-button>
+		</view>
+		<view class="button-demo">
+			<u-button :ripple="true" @click="gotoArticle">跳转文章</u-button>
 		</view>
 		<view class="button-demo">
 			<u-button :ripple="true" @click="gotoLogin">登录界面</u-button>
@@ -108,14 +111,27 @@
 				
 				//this.pageLoading = false;
 			},
+			
+			gotoArticle() {
+				this.$u.route('/pages/cms/articledetail', {
+					id: 1
+				});
+			},
+			
+			test() {
+				this.$u.get('/api/cms/frontend/articlelike/Like', {
+					contentType: 1,
+					contentId: 1,
+					likeType: 1
+				}).then(res => {
+					console.log(res);
+				});
+			},
+			
 		},
 		
 		watch: {
-			vuex_tabbar(val) {
-				//this.$store.dispatch('loadPageLayout', {item:val[0], index: 0, mustget: false});
-				
-				//console.log(this.tabbarIndex);
-			},
+			
 		}, 
 	}
 </script>

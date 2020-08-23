@@ -1,6 +1,6 @@
 <template>
 	<view style="width: 100%;">
-		<u-grid class="grid-box" :col="4">
+		<u-grid class="grid-box" :col="4" :border="false">
 			<template v-for="item in items">
 				<u-grid-item>
 					<u-image :src="item.ImageThumb_PictureUrl" width="96" height="96"></u-image>

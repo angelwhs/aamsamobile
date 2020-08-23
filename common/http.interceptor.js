@@ -37,7 +37,10 @@ const install = (Vue, vm) => {
 		if(res.errorcode == 0) {
 			// 如果把originalData设置为了true，这里return回什么，this.$u.post的then回调中就会得到什么
 			return res.result;  
-		} else return false;
+		} else {
+			
+			return false;
+		}
 	}
 }
 
