@@ -55,8 +55,11 @@
 
 				<!--评论列表 & 点赞列表-->
 				<view>
-					<u-tabs :name="tabConfig.name" :list="tabConfig.list" :is-scroll="tabConfig.isScroll" :current="tabConfig.current"
-					 @change="tabChange"></u-tabs>
+					<u-sticky>
+						<u-tabs :name="tabConfig.name" :list="tabConfig.list" :is-scroll="tabConfig.isScroll" :current="tabConfig.current"
+							@change="tabChange" active-color="#303133" inactive-color="#606266"></u-tabs>
+					</u-sticky>
+					
 					<u-line color="#e4e7ed" />
 					<!--评论列表-->
 					<template v-if="tabConfig.current == 0">
