@@ -100,7 +100,22 @@ export default {
 			if (!this.pagelayoutitem) return;
 		},
 
-		click(index) {}
+		click(index) {
+			if(this.items && this.items.length > 0) {
+				let item = this.items[index];
+				//console.log(item);
+				if(item && item.article) {
+					let article = item.article;
+					if(!article.IsLink) {
+						this.$u.route('/pages/cms/articledetail', {
+							id: article.Id
+						});
+					} else {
+						
+					}
+				}
+			}
+		}
 	}
 
 	// watch: {

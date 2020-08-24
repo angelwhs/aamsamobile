@@ -60,7 +60,12 @@
 					<u-line color="#e4e7ed" />
 					<!--评论列表-->
 					<template v-if="tabConfig.current == 0">
-
+						<template v-if="commentList && commentList.length > 0">
+							
+						</template>
+						<template v-else>
+							<u-empty class="u-m-t-60" :icon-size="60" text="暂无评论,等你来评论哟" mode="message"></u-empty>
+						</template>
 					</template>
 
 					<!--点赞列表-->
@@ -182,7 +187,7 @@
 				this.$u.get('/api/cms/frontend/article/GetArticleById', {
 					id: this.articleId
 				}).then(res => {
-					console.log(res);
+					//console.log(res);
 					this.articleLoading = false;
 					this.article = res;
 				}).catch(error => {

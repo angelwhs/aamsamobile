@@ -44,8 +44,6 @@
 			return {
 				title: 'Hello',
 				
-				//tabbarIndex: -1
-				
 				pageLoading: false,
 				
 				pageLayout: null,
@@ -59,27 +57,13 @@
 		
 		//监听页面初次渲染完成
 		onReady() {
-			//console.log('on page ready ' + this.tabbarIndex);
-			//console.log(this.$store.state.vuex_tabbar);
-			
 			this.initPage();
 		},
 		
 		onShow() {
-			//console.log('on page show ' + this.tabbarIndex);
-			//
 		},
 		
 		computed:{
-			// tabbarIndex: {
-			// 	get() {
-			// 		return this.$store.state.vuex_tabbarindex;
-			// 	},
-			// 	set(v) {
-			// 		this.$u.vuex('vuex_tabbarindex', v);
-			// 	}
-			// },
-			
 			
 		},
 		
@@ -100,7 +84,7 @@
 				//console.log(pagelayout);
 				if(!pagelayout) {
 					this.$store.dispatch('loadPageLayoutData', pagename).then(res => {
-						console.log(res.pagelayout);
+						//console.log(res.pagelayout);
 						this.pageLayout = res.pagelayout;
 						this.pageLoading = false;
 					});

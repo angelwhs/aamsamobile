@@ -12,6 +12,9 @@
 					<template v-else-if="item.ShowType === 3">
 						<custom-menu :items="item.Articles"></custom-menu>
 					</template>
+					<template v-else-if="item.ShowType === 61 || item.ShowType === 62 || item.ShowType === 63 || item.ShowType === 64">
+						<article-list :contentsection="item"></article-list>
+					</template>
 				</template>
 			</template>
 		</template>
@@ -85,12 +88,13 @@
 							let item = {
 								image: v.ImageThumb_PictureUrl,
 								title: v.Title,
+								article: v,
 							};
 							
 							list.push(item);
 						});
 				}
-				console.log(list);
+				//console.log(list);
 				return list;
 			},
 		}

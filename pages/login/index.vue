@@ -123,7 +123,7 @@
 						Password: this.pwd
 					})).then(res => {
 						this.accountLoginState = 2;
-						console.log(res);
+						//console.log(res);
 
 						this.$u.vuex('vuex_token', res.Token);
 						this.$u.vuex('vuex_user', res.User);
@@ -137,6 +137,13 @@
 						});
 					}).catch(error => {
 						this.accountLoginState = 2;
+						
+						this.$refs.uToast.show({
+							title: '登录失败:' + error.errormsg,
+							type: 'error',
+							isTab: true,
+							duration: 2000
+						});
 					});
 				}
 			},
